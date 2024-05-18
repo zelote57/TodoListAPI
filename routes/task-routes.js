@@ -1,7 +1,7 @@
 const express = require('express');
 const HttpError = require('../models/http-error');
 const {v4: uuiv4} = require('uuid');
-const taskController = require('./../task-Controller/taskController');
+const taskController = require('../Controller/taskController');
 
 const router = express.Router();
 
