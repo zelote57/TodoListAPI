@@ -1,7 +1,7 @@
 const express = require('express');
 const HttpError = require('../models/http-error');
 const {v4: uuiv4} = require('uuid');
-const taskController = require('./../task-Controller/taskController');
+const taskController = require('../Controller/taskController');
 
 const router = express.Router();
 
@@ -38,10 +38,24 @@ const DUMMY_TASKS = [
     }
 ];
 
+
 router.get('/', taskController.getAllTask);
 
 router.patch('/:tid', taskController.updateTask);
 
 router.delete('/:tid', taskController.deleteTask);
+
+router.post('/', (req, res, next)=>{
+  const {descripcion, isCompleted, user_id} = req.body;
+    const addtask = {
+        id: uuiv4(),
+        descripcion,
+        isCompleted,
+        user_id
+    };
+    DUMMY_TASKS.push(addtask);
+    res.status(200).json({task: addtask});
+});
+
 
 module.exports = router;
