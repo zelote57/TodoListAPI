@@ -49,8 +49,24 @@ const getTaskById = (req, res, next) => {
     res.json({ task });
 };
 
+const updateTask = (req, res, next)=>{
+  const { isCompleted } = req.body;
+  const taskId = req.params.tid;
+
+  const updatedTask = {... DUMMY_TASKS.find(t => t.id === taskId)};
+  const taskIndex = DUMMY_TASKS.findIndex(t => t.id === taskId);
+
+  updatedTask.isCompleted = isCompleted;
+
+  DUMMY_TASKS[taskIndex] = updatedTask;
+
+  res.status(200).json({task: updatedTask});
+
+};
+
+
 const deleteTask = (req, res, next) => {
-  const TaskId = req.params.pid;
+  const taskId = req.params.tid;
   DUMMY_TASKS = DUMMY_TASKS.filter(t => t.id !== taskId)
   res.status(200).json({message: 'Tarea eliminada exitosamente'});
 };
@@ -59,5 +75,6 @@ const deleteTask = (req, res, next) => {
 module.exports = {
   getAllTask,
   getTaskById,
-  deleteTask
+  updateTask,
+  deleteTask  
 };

@@ -41,6 +41,7 @@ const DUMMY_TASKS = [
 router.get('/', taskController.getAllTask);
 
 router.get('/:tid', taskController.getTaskById);
+
 router.patch('/:tid', taskController.updateTask);
 
 router.delete('/:tid', taskController.deleteTask);
