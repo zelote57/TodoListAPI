@@ -1,26 +1,27 @@
-const express = require('express');
-const bodyParser = require('body-parser');
+const express = require("express");
+const bodyParser = require("body-parser");
 
-const taskRoutes = require('./routes/task-routes');
-const HttpError = require('./models/http-error');
+const taskRoutes = require("./routes/task-routes");
+const HttpError = require("./models/http-error");
+const userRoutes = require("./routes/user-routes");
 
 const app = express();
 
 app.use(bodyParser.json());
-app.use('/api/task', taskRoutes);
+app.use("/api/task", taskRoutes);
+app.use("/api/user", userRoutes);
 
-app.use((req, res, next)=>{
-    const error = new HttpError('Ruta no existente', 404);
-    throw error;
+app.use((req, res, next) => {
+  const error = new HttpError("Ruta no existente", 404);
+  throw error;
 });
 
-app.use((error, req, res, next)=>{
-    if(res.headerSent){
-        return next(error);
-    }
-    res.status(error.code || 500);
-    res.json({message : error.message || 'Error desconocido'});
+app.use((error, req, res, next) => {
+  if (res.headerSent) {
+    return next(error);
+  }
+  res.status(error.code || 500);
+  res.json({ message: error.message || "Error desconocido" });
 });
-
 
 app.listen(4000);
