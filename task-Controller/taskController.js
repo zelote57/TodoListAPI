@@ -1,10 +1,3 @@
-const express = require('express');
-const HttpError = require('../models/http-error');
-const {v4: uuiv4} = require('uuid');
-const taskController = require('./../task-Controller/taskController');
-
-const router = express.Router();
-
 const DUMMY_TASKS = [
     {
       "id": 1,
@@ -38,22 +31,8 @@ const DUMMY_TASKS = [
     }
 ];
 
+const getAllTask = (req, res, next) => {    
+    res.json({DUMMY_TASKS});
+};
 
-router.get('/task', (req, res, next)=>{
-
-router.post('/task', (req, res, next)=>{
-  const {descripcion, isCompleted, user_id} = req.body;
-    const addtask = {
-        id: uuid.v4(),
-        descripcion,
-        isCompleted,
-        user_id
-    };
-    DUMMY_TASKS.push(addtask);
-});
-    
-})
-router.get('/', taskController.getAllTask);
-
-
-module.exports = router;
+exports.getAllTask = getAllTask;
