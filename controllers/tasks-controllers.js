@@ -1,5 +1,6 @@
 const HttpError = require("../models/http-error");
 const Task = require("../models/task");
+const { v4: uuiv4 } = require("uuid");
 
 let DUMMY_TASKS = [
   {
@@ -63,6 +64,18 @@ const updateTask = (req, res, next) => {
   res.status(200).json({ task: updatedTask });
 };
 
+const addTask = (req, res, next) => {
+  const { descripcion, isCompleted, user_id } = req.body;
+  const addtask = {
+    id: uuiv4(),
+    descripcion,
+    isCompleted,
+    user_id,
+  };
+  DUMMY_TASKS.push(addtask);
+  res.status(200).json({ task: addtask });
+}
+
 const deleteTask = (req, res, next) => {
   const taskId = req.params.tid;
   DUMMY_TASKS = DUMMY_TASKS.filter((t) => t.id !== taskId);
@@ -73,5 +86,6 @@ module.exports = {
   getAllTask,
   getTaskById,
   updateTask,
+  addTask,
   deleteTask,
 };
