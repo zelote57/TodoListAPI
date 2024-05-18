@@ -2,8 +2,8 @@ const express = require("express");
 const bodyParser = require("body-parser");
 
 const taskRoutes = require("./routes/task-routes");
-const HttpError = require("./models/http-error");
 const userRoutes = require("./routes/user-routes");
+const HttpError = require("./models/http-error");
 
 const app = express();
 
