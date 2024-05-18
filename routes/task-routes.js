@@ -1,5 +1,5 @@
 const express = require('express');
-const HttpError = require('../MODELS/http-error');
+const HttpError = require('../models/http-error');
 const {v4: uuiv4} = require('uuid');
 
 const router = express.Router();
