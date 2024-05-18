@@ -1,10 +1,9 @@
 const express = require('express');
-const HttpError = require('../MODELS/http-error');
 const {v4: uuiv4} = require('uuid');
 
 const router = express.Router();
 
-DUMMY_TASKS = [
+const DUMMY_TASKS = [
     {
       "id": 1,
       "descripcion": "Completar informe mensual",
@@ -35,9 +34,12 @@ DUMMY_TASKS = [
       "isCompleted": true,
       "user_id": 456
     }
-  ];
+];
 
 
 router.get('/task', (req, res, next)=>{
-    
+    res.json({DUMMY_TASKS});
 })
+
+
+module.exports = router;
