@@ -1,5 +1,4 @@
 const express = require('express');
-const HttpError = require('../MODELS/http-error');
 const {v4: uuiv4} = require('uuid');
 
 const router = express.Router();
@@ -39,5 +38,16 @@ DUMMY_TASKS = [
 
 
 router.get('/task', (req, res, next)=>{
+
+router.post('/task', (req, res, next)=>{
+  const {descripcion, isCompleted, user_id} = req.body;
+    const addtask = {
+        id: uuid.v4(),
+        descripcion,
+        isCompleted,
+        user_id
+    };
+    DUMMY_TASKS.push(addtask);
+});
     
 })
