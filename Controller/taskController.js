@@ -35,4 +35,12 @@ const getAllTask = (req, res, next) => {
     res.json({DUMMY_TASKS});
 };
 
+const deleteTask = (req, res, next) => {
+  const TaskId = req.params.pid;
+  DUMMY_TASKS = DUMMY_TASKS.filter(t => t.id !== taskId)
+  res.status(200).json({message: 'Tarea eliminada exitosamente'});
+};
+
+
 exports.getAllTask = getAllTask;
+exports.deleteTask = deleteTask;
