@@ -1,8 +1,9 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const {v4: uuiv4} = require('uuid');
 
-const express = require('express');
-const bodyParser = require('body-parser');
+const taskRoutes = require('./routes/task-routes');
 
-const express = require('express');
-const bodyParser = require('body-parser');
+const app = express();
+
+app.listen(4000);
