@@ -34,7 +34,7 @@ let DUMMY_TASKS = [
     }
 ];
 
-const getTasks = (req, res, next) => {
+const getAllTask = (req, res, next) => {
     res.json({ tasks: DUMMY_TASKS });
 };
 
@@ -49,7 +49,15 @@ const getTaskById = (req, res, next) => {
     res.json({ task });
 };
 
+const deleteTask = (req, res, next) => {
+  const TaskId = req.params.pid;
+  DUMMY_TASKS = DUMMY_TASKS.filter(t => t.id !== taskId)
+  res.status(200).json({message: 'Tarea eliminada exitosamente'});
+};
+
+
 module.exports = {
-    getTasks,
-    getTaskById
+  getAllTask,
+  getTaskById,
+  deleteTask
 };
