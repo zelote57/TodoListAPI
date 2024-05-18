@@ -1,9 +1,3 @@
-const express = require('express');
-const {v4: uuiv4} = require('uuid');
-const taskController = require('./../task-Controller/taskController');
-
-const router = express.Router();
-
 const DUMMY_TASKS = [
     {
       "id": 1,
@@ -37,7 +31,8 @@ const DUMMY_TASKS = [
     }
 ];
 
-router.get('/', taskController.getAllTask);
+const getAllTask = (req, res, next) => {    
+    res.json({DUMMY_TASKS});
+};
 
-
-module.exports = router;
+exports.getAllTask = getAllTask;
