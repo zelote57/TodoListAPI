@@ -42,6 +42,10 @@ router.get('/', taskController.getAllTask);
 
 router.get('/:tid', taskController.getTaskById);
 
+router.patch('/:tid', taskController.updateTask);
+
+router.delete('/:tid', taskController.deleteTask);
+
 router.post('/', (req, res, next)=>{
   const {descripcion, isCompleted, user_id} = req.body;
     const addtask = {
