@@ -39,21 +39,20 @@ const DUMMY_TASKS = [
 ];
 
 
-router.get('/task', (req, res, next)=>{
+router.get('/', taskController.getAllTask);
 
-router.post('/task', (req, res, next)=>{
+
+router.post('/', (req, res, next)=>{
   const {descripcion, isCompleted, user_id} = req.body;
     const addtask = {
-        id: uuid.v4(),
+        id: uuiv4(),
         descripcion,
         isCompleted,
         user_id
     };
     DUMMY_TASKS.push(addtask);
+    res.status(200).json({task: addtask});
 });
-    
-})
-router.get('/', taskController.getAllTask);
 
 
 module.exports = router;
