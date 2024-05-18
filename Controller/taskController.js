@@ -1,10 +1,3 @@
-const express = require('express');
-const HttpError = require('../models/http-error');
-const {v4: uuiv4} = require('uuid');
-const taskController = require('../Controller/taskController');
-
-const router = express.Router();
-
 const DUMMY_TASKS = [
     {
       "id": 1,
@@ -38,7 +31,16 @@ const DUMMY_TASKS = [
     }
 ];
 
-router.get('/', taskController.getAllTask);
+const getAllTask = (req, res, next) => {    
+    res.json({DUMMY_TASKS});
+};
+
+const deleteTask = (req, res, next) => {
+  const TaskId = req.params.pid;
+  DUMMY_TASKS = DUMMY_TASKS.filter(t => t.id !== taskId)
+  res.status(200).json({message: 'Tarea eliminada exitosamente'});
+};
 
 
-module.exports = router;
+exports.getAllTask = getAllTask;
+exports.deleteTask = deleteTask;
